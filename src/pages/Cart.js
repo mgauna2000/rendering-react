@@ -1,41 +1,56 @@
-import React, { useContext } from 'react'
-// import CartContext from '../context/CardContext';
+import React, { useContext } from "react";
+import CartContext from "../context/CardContext";
 
 const Cart = () => {
-
-    // const { addToCart } = useContext(CartContext);
+  const { cartListItems, totalPrice } = useContext(CartContext);
+  console.log("items desde check: ", cartListItems);
 
   return (
-      <>
-      <div className='container'>
-          {/* {console.log("item: ", addToCart)} */}
-      {/* {addToCart.map((item) => {
-                return (
-                  <div
-                    className="products-container"
-                    key={item.id}
-                    style={{ display: "flex" }}
-                  >
+    <>
+      <div className="table-responsive">
+        <h2 className="m-4">Productos agregados</h2>
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Total</th>
+              <th>Quitar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cartListItems.map((item) => {
+              const { id, title, image, price } = item;
+              return (
+                <tr key={id}>
+                  <td>
                     <img
-                      src={`./${item.image}`}
-                      className="img-fluid rounded-start"
-                      alt="..."
-                      style={{ width: "150px", height: "150px" }}
-                    />
-                    <div style={{ flexDirection: "column" }}>
-                      <h5 className="card-title">{item.title}</h5>
-                      <p className="card-text">
-                        <small className="text-muted">$ {item.price}</small>
-                      </p>
-                      <p className="card-text">4</p>
-                      <i className="fa-solid fa-trash"></i>
-                    </div>
-                  </div>
-                );
-              })} */}
-              </div>
+                      src={`/${image}`}
+                      style={{ width: "100px", height: "auto" }}
+                    ></img>
+                  </td>
+                  <td className="pt-5">{title}</td>
+                  <td className="pt-5">$ {price}</td>
+                  <td className="pt-5">5</td>
+                  <td className="pt-5">$ 2000</td>
+                  <td className="text-center pt-5">
+                    <i className="fa-solid fa-trash"></i>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <div>
+        <h2 className="text-center">Total</h2>
+        <p>$ {totalPrice}</p>
+        </div>
+        <button className="btn btn-secondary">Completar compra</button>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;
