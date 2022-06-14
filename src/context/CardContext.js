@@ -17,9 +17,16 @@ const CartProvider = ({children}) => {
       }
     }
 
+    const removeProduct = (id) => {
+      const copyCartListItems = [...cartListItems]
+      const newCartListItems = copyCartListItems.filter(cartListItems => cartListItems.id !== id)
+      setCartListItems(newCartListItems)
+    }
+
     const data = {
         cartListItems,
         totalPrice,
+        removeProduct,
         addProductToCart
     }
 

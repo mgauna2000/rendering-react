@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import CartContext from "../context/CardContext";
 
 const Cart = () => {
-  const { cartListItems, totalPrice } = useContext(CartContext);
+  const { cartListItems, totalPrice, removeProduct } = useContext(CartContext);
   console.log("items desde check: ", cartListItems);
 
   return (
@@ -36,7 +36,7 @@ const Cart = () => {
                   <td className="pt-5">5</td>
                   <td className="pt-5">$ 2000</td>
                   <td className="text-center pt-5">
-                    <i className="fa-solid fa-trash"></i>
+                    <i className="fa-solid fa-trash" style={{cursor: "pointer"}} onClick={() => removeProduct(id)}></i>
                   </td>
                 </tr>
               );
