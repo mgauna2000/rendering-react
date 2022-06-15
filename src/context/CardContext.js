@@ -12,7 +12,6 @@ const CartProvider = ({children}) => {
       console.log("se agrego el producto: ", product)
       let isInCart = cartListItems.find(cartItem => cartItem.id == product.id)
       if(!isInCart) {
-      // if(!isInCart) {
         setTotalPrice(totalPrice + product.price)
         // setTotalPrice(totalPrice + product.price * product.amount)
        return setCartListItems(cartListItems => [...cartListItems, product])
