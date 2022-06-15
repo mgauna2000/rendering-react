@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import CartContext from "../../context/CardContext";
 
 const CartWidget = () => {
-  const { cartListItems } = useContext(CartContext);
+  const { cartListItems, removeProduct } = useContext(CartContext);
 
   return (
     <>
@@ -40,24 +40,25 @@ const CartWidget = () => {
                 <p>No hay productos agregados al carrito</p>
               )}
               {cartListItems.map((item) => {
+                const { id, title, image, price } = item;
                 return (
                   <div
                     className="products-container"
-                    key={item.id}
+                    key={id}
                     style={{ display: "flex" }}
                   >
                     <img
-                      src={`./${item.image}`}
+                      src={`./${image}`}
                       className="img-fluid rounded-start"
                       alt="..."
                       style={{ width: "150px", height: "150px" }}
                     />
                     <div style={{ flexDirection: "column" }}>
-                      <h5 className="card-title">{item.title}</h5>
+                      <h5 className="card-title">{title}</h5>
                       <p className="card-text">
-                        <small className="text-muted">$ {item.price}</small>
+                        <small className="text-muted">$ {price}</small>
                       </p>
-                      <i className="fa-solid fa-trash"></i>
+                      <i className="fa-solid fa-trash"style={{cursor: "pointer"}} onClick={() => removeProduct(id)}></i>
                     </div>
                   </div>
                 );

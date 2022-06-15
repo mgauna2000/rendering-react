@@ -23,6 +23,12 @@ const Cart = () => {
           <tbody>
             {cartListItems.map((item) => {
               const { id, title, image, price } = item;
+
+              const removeItems = () => {
+                removeProduct(id)
+                console.log(totalPrice)
+              }
+
               return (
                 <tr key={id}>
                   <td>
@@ -36,7 +42,7 @@ const Cart = () => {
                   <td className="pt-5">5</td>
                   <td className="pt-5">$ 2000</td>
                   <td className="text-center pt-5">
-                    <i className="fa-solid fa-trash" style={{cursor: "pointer"}} onClick={() => removeProduct(id)}></i>
+                    <i className="fa-solid fa-trash" style={{cursor: "pointer"}} onClick={removeItems}></i>
                   </td>
                 </tr>
               );

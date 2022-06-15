@@ -20,7 +20,12 @@ const CartProvider = ({children}) => {
     const removeProduct = (id) => {
       const copyCartListItems = [...cartListItems]
       const newCartListItems = copyCartListItems.filter(cartListItems => cartListItems.id !== id)
+      console.log("items remove", copyCartListItems[0].price)
+      setTotalPrice(totalPrice - copyCartListItems[0].price)
       setCartListItems(newCartListItems)
+      console.log(totalPrice)
+
+
     }
 
     const data = {
